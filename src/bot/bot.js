@@ -1,15 +1,28 @@
 const Telegraf = require('telegraf');
 const Markup = require('telegraf/markup')
-const Extra = require('telegraf/extra')
+// const Extra = require('telegraf/extra')
 const Calendar = require('telegraf-calendar-telegram');
 const getConfig = require('../config/config');
-const config = getConfig('eat_test_');
+// const config = getConfig('eat_test_');
 const API_TOKEN = process.env.API_TOKEN || '768875831:AAFEDe9uyBbUGKJ5ch-hXY8PYGeYfTLIGVg'; //the api token is into env var
-// const PORT = process.env.PORT || 3000;
-// const URL = process.env.URL || 'https://heroku-tg-bot-expenses-card.herokuapp.com/';
+const PORT = process.env.PORT || 3000;
+const URL = process.env.URL || 'https://tg-bot-expense.herokuapp.com/';
+
+// const koa = require('koa')
+// const Router = require('koa-router')
+// const app = new koa()
+// const router = new Router()
+// router.post('/bot', ctx => {
+//   console.log(ctx)
+//   ctx.status = 200
+// })
+// app.use(router.routes())
+// app.listen(3000,() => {
+//   console.log('rabotaet')
+// })
 
 const bot = new Telegraf(API_TOKEN);
-// bot.telegram.setWebhook('${URL}/bot${API_TOKEN}');
+// bot.setWebhook('https://c2d08ad2.ngrok.io/bot');
 // bot.startWebhook('/bot${API_TOKEN}', null, PORT);
 
 var jsforce = require('jsforce');
@@ -68,7 +81,6 @@ calendar.setDateListener((context, date) => {
 
 bot.action('balance', (ctx) => {
   console.log(userId)
-  ctx.answerCallbackQuery('Wait...')
   var balance = 0
   var records = [];
   conn.query("SELECT Reminder__c FROM Monthly_Expense__c WHERE  Keeper__c ='" + userId + "'", function (err, res) {
