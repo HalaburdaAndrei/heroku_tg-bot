@@ -5,12 +5,12 @@ const Calendar = require('telegraf-calendar-telegram');
 const getConfig = require('../config/config');
 const config = getConfig('eat_test_');
 const API_TOKEN = process.env.API_TOKEN || '768875831:AAFEDe9uyBbUGKJ5ch-hXY8PYGeYfTLIGVg'; //the api token is into env var
-const PORT = process.env.PORT || 3000;
-const URL = process.env.URL || 'https://heroku-tg-bot-expenses-card.herokuapp.com/';
+// const PORT = process.env.PORT || 3000;
+// const URL = process.env.URL || 'https://heroku-tg-bot-expenses-card.herokuapp.com/';
 
 const bot = new Telegraf(API_TOKEN);
-bot.telegram.setWebhook('${URL}/bot${API_TOKEN}');
-bot.startWebhook('/bot${API_TOKEN}', null, PORT);
+// bot.telegram.setWebhook('${URL}/bot${API_TOKEN}');
+// bot.startWebhook('/bot${API_TOKEN}', null, PORT);
 
 var jsforce = require('jsforce');
 
