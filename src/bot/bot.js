@@ -12,7 +12,7 @@ const SF_PASS = process.env.SF_PASS || '12121991a'
 const bot = new Telegraf(API_TOKEN);
 // bot.setWebhook('https://c2d08ad2.ngrok.io/bot');
 // bot.startWebhook('/bot${API_TOKEN}', null, PORT);
-bot.telegram.setWebhook('${process.env.URL}/bot${API_TOKEN}');
+bot.telegram.setWebhook('${URL}/bot${API_TOKEN}');
 bot.startWebhook('/bot${API_TOKEN}', null, process.env.PORT || 5000);
 
 var jsforce = require('jsforce');
