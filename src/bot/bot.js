@@ -1,29 +1,19 @@
 const Telegraf = require('telegraf');
 const Markup = require('telegraf/markup')
-// const Extra = require('telegraf/extra')
 const Calendar = require('telegraf-calendar-telegram');
 const getConfig = require('../config/config');
 // const config = getConfig('eat_test_');
 const API_TOKEN = process.env.API_TOKEN || '768875831:AAFEDe9uyBbUGKJ5ch-hXY8PYGeYfTLIGVg'; //the api token is into env var
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const URL = process.env.URL || 'https://tg-bot-expense.herokuapp.com/';
-
-// const koa = require('koa')
-// const Router = require('koa-router')
-// const app = new koa()
-// const router = new Router()
-// router.post('/bot', ctx => {
-//   console.log(ctx)
-//   ctx.status = 200
-// })
-// app.use(router.routes())
-// app.listen(3000,() => {
-//   console.log('rabotaet')
-// })
+const SF_LOGIN = process.env.SF_LOGIN || 'novableach1991@brave-fox-j6hq80.com'
+const SF_PASS = process.env.SF_PASS || '12121991a'
 
 const bot = new Telegraf(API_TOKEN);
 // bot.setWebhook('https://c2d08ad2.ngrok.io/bot');
 // bot.startWebhook('/bot${API_TOKEN}', null, PORT);
+bot.telegram.setWebhook('${process.env.URL}/bot${API_TOKEN}');
+bot.startWebhook('/bot${API_TOKEN}', null, process.env.PORT || 5000);
 
 var jsforce = require('jsforce');
 
@@ -44,7 +34,7 @@ var conn = new jsforce.Connection({
   //loginUrl : 'https://test.salesforce.com'
 });
 
-conn.login('novableach1991@brave-fox-j6hq80.com', '12121991a', function (err, userInfo) {
+conn.login(SF_LOGIN, SF_PASS, function (err, userInfo) {
   if (err) { return console.error(err); }
   console.log(conn.accessToken);
   console.log(conn.instanceUrl);
