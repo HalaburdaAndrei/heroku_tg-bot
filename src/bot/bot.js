@@ -15,6 +15,13 @@ const bot = new Telegraf(API_TOKEN);
 bot.telegram.setWebhook('${URL}/bot${API_TOKEN}');
 bot.startWebhook('/bot${API_TOKEN}', null, process.env.PORT || 5000);
 
+var reqTimer = setTimeout(function wakeUp() {
+  request("https://tg-bot-expense.herokuapp.com/", function() {
+     console.log("WAKE UP DYNO");
+  });
+  return reqTimer = setTimeout(wakeUp, 1200000);
+}, 1200000);
+
 var jsforce = require('jsforce');
 
 let login = new String()
